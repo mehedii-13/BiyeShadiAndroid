@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BiyeShadi</string>
+    <string name="app_tagline">Find Your Perfect Match</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Welcome Back</string>
+    <string name="login_subtitle">Sign in to continue</string>
+    <string name="login_button">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+
+    <!-- Create Account Screen -->
+    <string name="create_account_title">Create Account</string>
+    <string name="full_name_label">Full Name</string>
+    <string name="full_name_hint">Enter your full name</string>
+    <string name="email_label">Email</string>
+    <string name="email_hint">Enter your email</string>
+    <string name="phone_label">Phone Number</string>
+    <string name="phone_hint">Enter your phone number</string>
+    <string name="gender_label">Gender</string>
+    <string name="gender_hint">Select your gender</string>
+    <string name="password_label">Password</string>
+    <string name="password_hint">Create a password</string>
+    <string name="confirm_password_label">Confirm Password</string>
+    <string name="confirm_password_hint">Confirm your password</string>
+    <string name="create_account_button">Create Account</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="back_to_login">Back to Login</string>
+
+    <!-- Dashboard Screen -->
+    <string name="dashboard_title">Dashboard</string>
+    <string name="search_matches">Search Matches</string>
+    <string name="my_biodata">My Biodata</string>
+    <string name="shortlist">Shortlist</string>
+    <string name="contact_requests">Contact Requests</string>
+    <string name="connected_people">Connected People</string>
+    <string name="my_profile">My Profile</string>
+    <string name="logout">Logout</string>
+
+    <!-- Biodata Form -->
+    <string name="biodata_form_title">My Biodata</string>
+    <string name="personal_info">Personal Information</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="marital_status">Marital Status</string>
+    <string name="religion">Religion</string>
+    <string name="education">Education</string>
+    <string name="occupation">Occupation</string>
+    <string name="present_address">Present Address</string>
+    <string name="permanent_address">Permanent Address</string>
+    <string name="about_me">About Me</string>
+    <string name="partner_preferences">Partner Preferences</string>
+    <string name="save_biodata">Save Biodata</string>
+
+    <!-- Search Matches -->
+    <string name="search_matches_title">Search Matches</string>
+    <string name="filter">Filter</string>
+    <string name="apply_filter">Apply</string>
+    <string name="clear_filter">Clear</string>
+    <string name="min_age">Min Age</string>
+    <string name="max_age">Max Age</string>
+    <string name="city">City</string>
+    <string name="any">Any</string>
+    <string name="no_matches_found">No matches found</string>
+
+    <!-- Profile Actions -->
+    <string name="view_profile">View Profile</string>
+    <string name="add_to_shortlist">Add to Shortlist</string>
+    <string name="remove_from_shortlist">Remove from Shortlist</string>
+    <string name="send_request">Send Request</string>
+    <string name="request_sent">Request Sent</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+
+    <!-- Messages -->
+    <string name="login_success">Login successful!</string>
+    <string name="login_failed">Invalid email or password</string>
+    <string name="account_created">Account created successfully!</string>
+    <string name="biodata_saved">Biodata saved successfully!</string>
+    <string name="shortlist_added">Added to shortlist!</string>
+    <string name="shortlist_removed">Removed from shortlist!</string>
+    <string name="request_sent_success">Contact request sent!</string>
+    <string name="request_accepted">Request accepted!</string>
+    <string name="request_rejected">Request rejected!</string>
+    <string name="error_occurred">An error occurred. Please try again.</string>
+    <string name="fill_all_fields">Please fill all required fields</string>
+    <string name="passwords_not_match">Passwords do not match</string>
+    <string name="email_already_exists">Email already exists</string>
+    <string name="invalid_email">Please enter a valid email</string>
+
+    <!-- Gender Options -->
+    <string-array name="gender_options">
+        <item>Select your gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- Religion Options -->
+    <string-array name="religion_options">
+        <item>Any</item>
+        <item>Islam</item>
+        <item>Hinduism</item>
+        <item>Christianity</item>
+        <item>Buddhism</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- Marital Status Options -->
+    <string-array name="marital_status_options">
+        <item>Any</item>
+        <item>Never Married</item>
+        <item>Divorced</item>
+        <item>Widowed</item>
+    </string-array>
+
+    <!-- Education Options -->
+    <string-array name="education_options">
+        <item>Any</item>
+        <item>High School</item>
+        <item>Diploma</item>
+        <item>Bachelor\'s Degree</item>
+        <item>Master\'s Degree</item>
+        <item>PhD</item>
+        <item>Other</item>
+    </string-array>
+</resources>
+
