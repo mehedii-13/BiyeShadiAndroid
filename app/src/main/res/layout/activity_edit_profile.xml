@@ -141,11 +141,11 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/phoneField"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="329dp"
+                        android:layout_height="50dp"
+                        android:inputType="phone"
                         android:textColor="#000000"
-                        android:textColorHint="#757575"
-                        android:inputType="phone" />
+                        android:textColorHint="#757575" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
