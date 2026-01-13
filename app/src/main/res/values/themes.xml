@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.BiyeShadi" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary Colors -->
         <item name="colorPrimary">@color/primary_red</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
-        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorOnPrimary">@color/text_on_primary</item>
+
+        <!-- Secondary Colors -->
         <item name="colorSecondary">@color/secondary_gold</item>
-        <item name="colorSecondaryVariant">@color/secondary_gold</item>
-        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="colorSecondaryVariant">@color/warning_orange_dark</item>
+        <item name="colorOnSecondary">@color/text_on_secondary</item>
+
+        <!-- Background Colors -->
+        <item name="android:colorBackground">@color/background_light</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        <!-- Status Bar -->
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Text Colors -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
         <item name="android:editTextColor">@color/text_input</item>
         <item name="editTextColor">@color/text_input</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+
+        <!-- Control Colors -->
         <item name="colorControlNormal">@color/text_secondary</item>
         <item name="colorControlActivated">@color/primary_red</item>
+        <item name="colorControlHighlight">@color/ripple</item>
+
+        <!-- Button Colors -->
+        <item name="materialButtonStyle">@style/Widget.BiyeShadi.Button</item>
     </style>
 
     <style name="Theme.BiyeShadi.NoActionBar">
@@ -19,7 +41,27 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.BiyeShadi.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+    <style name="Theme.BiyeShadi.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/text_on_primary</item>
+    </style>
 
-    <style name="Theme.BiyeShadi.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+    <style name="Theme.BiyeShadi.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light">
+        <item name="android:textColorPrimary">@color/text_primary</item>
+    </style>
+
+    <!-- Button Style -->
+    <style name="Widget.BiyeShadi.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/button_text</item>
+        <item name="backgroundTint">@color/primary_red</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Card Style -->
+    <style name="Widget.BiyeShadi.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">4dp</item>
+    </style>
 </resources>

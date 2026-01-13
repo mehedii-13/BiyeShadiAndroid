@@ -1,40 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Colors -->
-    <color name="colorPrimary">#e74c3c</color>
-    <color name="colorPrimaryDark">#c0392b</color>
-    <color name="colorAccent">#e74c3c</color>
-    <color name="primary_red">#e74c3c</color>
-    <color name="secondary_gold">#f39c12</color>
-    <color name="light_pink">#fce4ec</color>
+    <!-- Primary Colors - Enhanced with better contrast -->
+    <color name="colorPrimary">#D32F2F</color>
+    <color name="colorPrimaryDark">#B71C1C</color>
+    <color name="colorAccent">#FF5252</color>
+    <color name="primary_red">#D32F2F</color>
+    <color name="primary_red_light">#EF5350</color>
+    <color name="secondary_gold">#FFA000</color>
+    <color name="light_pink">#FCE4EC</color>
 
-    <!-- Background Colors -->
-    <color name="background_gradient_start">#f8f9fa</color>
-    <color name="background_gradient_end">#e9ecef</color>
-    <color name="background_light">#f5f5f5</color>
+    <!-- Background Colors - More pleasant gradients -->
+    <color name="background_gradient_start">#FAFAFA</color>
+    <color name="background_gradient_end">#F5F5F5</color>
+    <color name="background_light">#F8F9FA</color>
+    <color name="background_white">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
+    <color name="background_card">#FFFFFF</color>
 
-    <!-- Text Colors -->
-    <color name="text_primary">#000000</color>
-    <color name="text_secondary">#7f8c8d</color>
-    <color name="text_link">#e74c3c</color>
-    <color name="text_input">#000000</color>
+    <!-- Text Colors - High contrast for readability -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_tertiary">#9E9E9E</color>
+    <color name="text_link">#D32F2F</color>
+    <color name="text_input">#212121</color>
+    <color name="text_hint">#BDBDBD</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_on_secondary">#FFFFFF</color>
 
-    <!-- Input Field Colors -->
-    <color name="input_background">#f8f9fa</color>
-    <color name="input_border">#ced4da</color>
+    <!-- Input Field Colors - Better visibility -->
+    <color name="input_background">#FAFAFA</color>
+    <color name="input_background_focused">#FFFFFF</color>
+    <color name="input_border">#E0E0E0</color>
+    <color name="input_border_focused">#D32F2F</color>
 
-    <!-- Button Colors -->
-    <color name="button_primary_start">#e74c3c</color>
-    <color name="button_primary_end">#c0392b</color>
+    <!-- Button Colors - Vibrant and clear -->
+    <color name="button_primary_start">#EF5350</color>
+    <color name="button_primary_end">#D32F2F</color>
+    <color name="button_text">#FFFFFF</color>
+    <color name="button_disabled">#BDBDBD</color>
 
-    <!-- Status Colors -->
-    <color name="success_green">#27ae60</color>
-    <color name="warning_orange">#f39c12</color>
-    <color name="info_blue">#3498db</color>
-    <color name="error_red">#e74c3c</color>
-    
+    <!-- Status Colors - Highly visible -->
+    <color name="success_green">#4CAF50</color>
+    <color name="success_green_dark">#388E3C</color>
+    <color name="warning_orange">#FF9800</color>
+    <color name="warning_orange_dark">#F57C00</color>
+    <color name="info_blue">#2196F3</color>
+    <color name="info_blue_dark">#1976D2</color>
+    <color name="error_red">#F44336</color>
+    <color name="error_red_dark">#D32F2F</color>
+
+    <!-- Card & Surface Colors -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="divider">#E0E0E0</color>
+
     <!-- Launcher Icon Colors -->
-    <color name="ic_launcher_background">#e74c3c</color>
+    <color name="ic_launcher_background">#D32F2F</color>
+
+    <!-- Additional UI Colors -->
+    <color name="shadow">#1A000000</color>
+    <color name="overlay">#80000000</color>
+    <color name="ripple">#20D32F2F</color>
 </resources>
 
