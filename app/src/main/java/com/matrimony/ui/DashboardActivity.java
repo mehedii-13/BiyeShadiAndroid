@@ -253,17 +253,27 @@ public class DashboardActivity extends AppCompatActivity {
         int userId = sessionManager.getUserId();
         
         executorService.execute(() -> {
-            int shortlist = shortlistDAO.getShortlistCount(userId);
-            int pending = contactRequestDAO.getPendingRequestsForUser(userId).size();
-            int sent = contactRequestDAO.getSentRequestsCount(userId); // Only pending sent requests
-            int connected = contactRequestDAO.getAcceptedConnections(userId).size();
-            
-            runOnUiThread(() -> {
-                shortlistCount.setText(String.valueOf(shortlist));
-                pendingRequestCount.setText(String.valueOf(pending));
-                contactRequestCount.setText(String.valueOf(sent));
-                connectedPeopleCount.setText(String.valueOf(connected));
-            });
+            try {
+                int shortlist = shortlistDAO.getShortlistCount(userId);
+                int pending = contactRequestDAO.getPendingRequestCount(userId);
+                int sent = contactRequestDAO.getSentRequestsCount(userId); // Only pending sent requests
+                int connected = contactRequestDAO.getConnectedCount(userId);
+
+                runOnUiThread(() -> {
+                    shortlistCount.setText(String.valueOf(shortlist));
+                    pendingRequestCount.setText(String.valueOf(pending));
+                    contactRequestCount.setText(String.valueOf(sent));
+                    connectedPeopleCount.setText(String.valueOf(connected));
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                runOnUiThread(() -> {
+                    shortlistCount.setText("0");
+                    pendingRequestCount.setText("0");
+                    contactRequestCount.setText("0");
+                    connectedPeopleCount.setText("0");
+                });
+            }
         });
     }
 

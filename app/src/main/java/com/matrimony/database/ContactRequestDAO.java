@@ -294,10 +294,32 @@ public class ContactRequestDAO {
     
     // Delete Contact Request
     public int deleteRequest(int requestId) {
+        // Get request details before deleting for Firebase sync
+        ContactRequest request = getRequestById(requestId);
+
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        return db.delete(DatabaseHelper.TABLE_CONTACT_REQUESTS,
+        int result = db.delete(DatabaseHelper.TABLE_CONTACT_REQUESTS,
                 DatabaseHelper.COLUMN_REQUEST_ID + " = ?",
                 new String[]{String.valueOf(requestId)});
+
+        // Sync deletion to Firebase
+        if (result > 0 && request != null) {
+            syncRequestDeletionToFirebase(request);
+        }
+
+        return result;
+    }
+
+    // Sync request deletion to Firebase
+    private void syncRequestDeletionToFirebase(ContactRequest request) {
+        if (firebaseRef == null) return;
+
+        try {
+            String requestKey = request.getSenderId() + "_" + request.getReceiverId();
+            firebaseRef.child(requestKey).removeValue();
+        } catch (Exception e) {
+            android.util.Log.e("ContactRequestDAO", "Error syncing deletion to Firebase", e);
+        }
     }
 
     // Helper: Convert Cursor to ContactRequest

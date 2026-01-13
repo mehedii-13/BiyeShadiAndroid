@@ -48,7 +48,9 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
     private Spinner maritalStatusSpinner;
     private Spinner religionSpinner;
     private Spinner educationSpinner;
+    private Spinner incomeSpinner;
     private EditText cityField;
+    private EditText professionField;
     private Button searchButton;
     private Button clearButton;
     private RecyclerView recyclerView;
@@ -109,7 +111,9 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
         maritalStatusSpinner = findViewById(R.id.maritalStatusSpinner);
         religionSpinner = findViewById(R.id.religionSpinner);
         educationSpinner = findViewById(R.id.educationSpinner);
+        incomeSpinner = findViewById(R.id.incomeSpinner);
         cityField = findViewById(R.id.cityField);
+        professionField = findViewById(R.id.professionField);
         searchButton = findViewById(R.id.searchButton);
         clearButton = findViewById(R.id.clearButton);
         recyclerView = findViewById(R.id.recyclerView);
@@ -141,6 +145,10 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
         // Education
         String[] educations = {"Any", "High School", "Diploma", "Bachelor's Degree", "Master's Degree", "PhD", "Professional Degree"};
         setupSpinner(educationSpinner, educations);
+
+        // Income
+        String[] incomes = {"Any", "Below 2 Lakh", "2-5 Lakh", "5-10 Lakh", "10-20 Lakh", "20-50 Lakh", "50 Lakh - 1 Crore", "Above 1 Crore"};
+        setupSpinner(incomeSpinner, incomes);
     }
 
     private void setupSpinner(Spinner spinner, String[] items) {
@@ -289,7 +297,9 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
         String maritalStatus = maritalStatusSpinner.getSelectedItem().toString();
         String religion = religionSpinner.getSelectedItem().toString();
         String education = educationSpinner.getSelectedItem().toString();
+        String income = incomeSpinner.getSelectedItem().toString();
         String city = cityField.getText().toString().trim();
+        String profession = professionField.getText().toString().trim();
 
         Integer minAge = minAgeStr.equals("Any") ? null : Integer.parseInt(minAgeStr);
         Integer maxAge = maxAgeStr.equals("Any") ? null : Integer.parseInt(maxAgeStr);
@@ -311,8 +321,10 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
                 if (!maritalStatus.equals("Any") && (biodata.getMaritalStatus() == null || !biodata.getMaritalStatus().equals(maritalStatus))) continue;
                 if (!religion.equals("Any") && (biodata.getReligion() == null || !biodata.getReligion().equals(religion))) continue;
                 if (!education.equals("Any") && (biodata.getEducation() == null || !biodata.getEducation().equals(education))) continue;
+                if (!income.equals("Any") && (biodata.getAnnualIncome() == null || !biodata.getAnnualIncome().equals(income))) continue;
                 if (!city.isEmpty() && (biodata.getCity() == null || !biodata.getCity().toLowerCase().contains(city.toLowerCase()))) continue;
-                
+                if (!profession.isEmpty() && (biodata.getOccupation() == null || !biodata.getOccupation().toLowerCase().contains(profession.toLowerCase()))) continue;
+
                 MatchProfile profile = new MatchProfile(
                     user.getId(),
                     user.getName(),
@@ -354,7 +366,9 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
         maritalStatusSpinner.setSelection(0);
         religionSpinner.setSelection(0);
         educationSpinner.setSelection(0);
+        incomeSpinner.setSelection(0);
         cityField.setText("");
+        professionField.setText("");
         searchField.setText("");
         currentSearchQuery = "";
         loadAllMatches();
