@@ -95,6 +95,7 @@ public class ContactRequestsActivity extends AppCompatActivity implements Contac
                         request.getSenderId(),
                         sender.getName(),
                         sender.getEmail(),
+                        sender.getProfilePhotoUri(),
                         request.getStatus(),
                         request.getRequestDate()
                     ));

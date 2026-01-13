@@ -3,6 +3,7 @@ package com.matrimony.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.matrimony.R;
+import com.matrimony.util.ImageUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,6 +27,7 @@ public class RequestsSentAdapter extends RecyclerView.Adapter<RequestsSentAdapte
         private String receiverDetails;
         private String status;
         private long requestDate;
+        private String photoUri;
 
         public RequestSentItem(int requestId, int receiverId, String receiverName,
                               String receiverDetails, String status, long requestDate) {
@@ -36,12 +39,24 @@ public class RequestsSentAdapter extends RecyclerView.Adapter<RequestsSentAdapte
             this.requestDate = requestDate;
         }
 
+        public RequestSentItem(int requestId, int receiverId, String receiverName,
+                              String receiverDetails, String status, long requestDate, String photoUri) {
+            this.requestId = requestId;
+            this.receiverId = receiverId;
+            this.receiverName = receiverName;
+            this.receiverDetails = receiverDetails;
+            this.status = status;
+            this.requestDate = requestDate;
+            this.photoUri = photoUri;
+        }
+
         public int getRequestId() { return requestId; }
         public int getReceiverId() { return receiverId; }
         public String getReceiverName() { return receiverName; }
         public String getReceiverDetails() { return receiverDetails; }
         public String getStatus() { return status; }
         public long getRequestDate() { return requestDate; }
+        public String getPhotoUri() { return photoUri; }
     }
 
     public interface OnRequestSentClickListener {
@@ -71,6 +86,10 @@ public class RequestsSentAdapter extends RecyclerView.Adapter<RequestsSentAdapte
 
         holder.nameText.setText(item.getReceiverName());
         holder.detailsText.setText(item.getReceiverDetails());
+
+        // Load profile photo
+        ImageUtils.loadProfileImage(holder.itemView.getContext(), item.getPhotoUri(),
+                holder.profileImage, holder.profilePlaceholder);
 
         // Format status
         String statusText = "Status: " + formatStatus(item.getStatus());
@@ -143,6 +162,8 @@ public class RequestsSentAdapter extends RecyclerView.Adapter<RequestsSentAdapte
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView profileImage;
+        TextView profilePlaceholder;
         TextView nameText;
         TextView detailsText;
         TextView statusText;
@@ -152,6 +173,8 @@ public class RequestsSentAdapter extends RecyclerView.Adapter<RequestsSentAdapte
 
         ViewHolder(View itemView) {
             super(itemView);
+            profileImage = itemView.findViewById(R.id.profileImage);
+            profilePlaceholder = itemView.findViewById(R.id.profilePlaceholder);
             nameText = itemView.findViewById(R.id.nameText);
             detailsText = itemView.findViewById(R.id.detailsText);
             statusText = itemView.findViewById(R.id.statusText);

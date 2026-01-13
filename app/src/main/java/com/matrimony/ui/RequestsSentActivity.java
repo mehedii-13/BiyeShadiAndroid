@@ -113,7 +113,8 @@ public class RequestsSentActivity extends AppCompatActivity implements RequestsS
                         receiver.getName(),
                         details,
                         request.getStatus(),
-                        request.getRequestDate()
+                        request.getRequestDate(),
+                        receiver.getProfilePhotoUri()
                     ));
                 }
             }

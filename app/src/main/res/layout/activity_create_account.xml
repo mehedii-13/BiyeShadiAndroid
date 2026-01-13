@@ -29,9 +29,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="12dp"
             app:cardElevation="4dp"
-            app:cardBackgroundColor="@android:color/white">
+            app:cardBackgroundColor="@color/card_background">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,9 +44,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Full Name"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#2c3e50"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="5dp" />
 
                 <EditText
@@ -55,10 +55,11 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter your full name"
                     android:inputType="textPersonName"
-                    android:textSize="13sp"
-                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_input"
+                    android:textColorHint="@color/text_hint"
                     android:padding="12dp"
-                    android:background="@drawable/bg_input_field"
+                    android:background="@drawable/bg_input_selector"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Email Field -->
@@ -66,9 +67,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#2c3e50"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="5dp" />
 
                 <EditText
@@ -77,10 +78,11 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter your email"
                     android:inputType="textEmailAddress"
-                    android:textSize="13sp"
-                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_input"
+                    android:textColorHint="@color/text_hint"
                     android:padding="12dp"
-                    android:background="@drawable/bg_input_field"
+                    android:background="@drawable/bg_input_selector"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Phone Number Field -->
@@ -88,9 +90,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone Number"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#2c3e50"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="5dp" />
 
                 <EditText
@@ -99,10 +101,11 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter your phone number"
                     android:inputType="phone"
-                    android:textSize="13sp"
-                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_input"
+                    android:textColorHint="@color/text_hint"
                     android:padding="12dp"
-                    android:background="@drawable/bg_input_field"
+                    android:background="@drawable/bg_input_selector"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Gender ComboBox/Spinner -->
@@ -110,9 +113,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gender"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#2c3e50"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="5dp" />
 
                 <Spinner
@@ -129,9 +132,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Password"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#2c3e50"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="5dp" />
 
                 <EditText
@@ -140,10 +143,11 @@
                     android:layout_height="wrap_content"
                     android:hint="Create a password"
                     android:inputType="textPassword"
-                    android:textSize="13sp"
-                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_input"
+                    android:textColorHint="@color/text_hint"
                     android:padding="12dp"
-                    android:background="@drawable/bg_input_field"
+                    android:background="@drawable/bg_input_selector"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Confirm Password Field -->
@@ -151,9 +155,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Confirm Password"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#2c3e50"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="5dp" />
 
                 <EditText
@@ -162,10 +166,11 @@
                     android:layout_height="wrap_content"
                     android:hint="Confirm your password"
                     android:inputType="textPassword"
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     android:textColor="#000000"
+                    android:textColorHint="#757575"
                     android:padding="12dp"
-                    android:background="@drawable/bg_input_field"
+                    android:background="@drawable/bg_input_selector"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Progress Bar -->
@@ -183,13 +188,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Create Account"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/white"
-                    android:padding="12dp"
-                    android:background="@drawable/bg_button_primary"
+                    android:textColor="@color/button_text"
+                    android:padding="14dp"
+                    android:background="@drawable/bg_button_selector"
                     android:layout_marginTop="5dp"
-                    app:cornerRadius="5dp" />
+                    app:cornerRadius="8dp" />
 
             </LinearLayout>
 
@@ -207,8 +212,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account?"
-                android:textSize="13sp"
-                android:textColor="#7f8c8d"
+                android:textSize="14sp"
+                android:textColor="@color/text_secondary"
                 android:layout_marginBottom="5dp" />
 
             <TextView
@@ -216,9 +221,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Back to Login"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="#e74c3c"
+                android:textColor="@color/primary_red"
                 android:clickable="true"
                 android:focusable="true" />
 

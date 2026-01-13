@@ -152,14 +152,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:hint="Gender"
-                    app:boxBackgroundMode="outline">
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="#FFFFFF">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/genderField"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
-                        android:inputType="none" />
+                        android:inputType="none"
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

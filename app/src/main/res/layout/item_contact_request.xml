@@ -13,6 +13,46 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Profile Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <!-- Profile Image -->
+            <FrameLayout
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="12dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_default_avatar"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/primary_color"/>
+
+                <TextView
+                    android:id="@+id/profilePlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="👤"
+                    android:textSize="28sp"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+            <!-- Profile Info -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+
         <TextView
             android:id="@+id/nameText"
             android:layout_width="wrap_content"
@@ -39,6 +79,10 @@
             android:text="Received: Jan 01, 2026"
             android:textColor="@color/text_secondary"
             android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

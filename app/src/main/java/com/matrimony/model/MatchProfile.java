@@ -109,6 +109,9 @@ public class MatchProfile {
     public String getPhotoUrl() { return photoUrl; }
     public void setPhotoUrl(String photoUrl) { this.photoUrl = photoUrl; }
     
+    // Alias method for backward compatibility
+    public String getProfilePhotoUri() { return photoUrl; }
+
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     

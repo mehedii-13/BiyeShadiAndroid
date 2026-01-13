@@ -3,12 +3,14 @@ package com.matrimony.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrimony.R;
+import com.matrimony.util.ImageUtils;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class SuggestionProfileAdapter extends RecyclerView.Adapter<SuggestionPro
         private int age;
         private String location;
         private int matchPercentage;
+        private String photoUri;
 
         public SuggestionProfile(int userId, String name, int age, String location, int matchPercentage) {
             this.userId = userId;
@@ -29,11 +32,21 @@ public class SuggestionProfileAdapter extends RecyclerView.Adapter<SuggestionPro
             this.matchPercentage = matchPercentage;
         }
 
+        public SuggestionProfile(int userId, String name, int age, String location, int matchPercentage, String photoUri) {
+            this.userId = userId;
+            this.name = name;
+            this.age = age;
+            this.location = location;
+            this.matchPercentage = matchPercentage;
+            this.photoUri = photoUri;
+        }
+
         public int getUserId() { return userId; }
         public String getName() { return name; }
         public int getAge() { return age; }
         public String getLocation() { return location; }
         public int getMatchPercentage() { return matchPercentage; }
+        public String getPhotoUri() { return photoUri; }
     }
 
     public interface OnSuggestionClickListener {
@@ -65,6 +78,10 @@ public class SuggestionProfileAdapter extends RecyclerView.Adapter<SuggestionPro
         holder.locationText.setText(profile.getLocation());
         holder.matchText.setText(profile.getMatchPercentage() + "% Match");
 
+        // Load profile photo
+        ImageUtils.loadProfileImage(holder.itemView.getContext(), profile.getPhotoUri(),
+                holder.profileImage, holder.profilePlaceholder);
+
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onSuggestionClick(profile.getUserId());
@@ -78,6 +95,8 @@ public class SuggestionProfileAdapter extends RecyclerView.Adapter<SuggestionPro
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView profileImage;
+        TextView profilePlaceholder;
         TextView nameText;
         TextView ageText;
         TextView locationText;
@@ -85,6 +104,8 @@ public class SuggestionProfileAdapter extends RecyclerView.Adapter<SuggestionPro
 
         ViewHolder(View itemView) {
             super(itemView);
+            profileImage = itemView.findViewById(R.id.suggestionProfileImage);
+            profilePlaceholder = itemView.findViewById(R.id.suggestionProfilePlaceholder);
             nameText = itemView.findViewById(R.id.suggestionNameText);
             ageText = itemView.findViewById(R.id.suggestionAgeText);
             locationText = itemView.findViewById(R.id.suggestionLocationText);

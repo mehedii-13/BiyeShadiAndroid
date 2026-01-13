@@ -180,6 +180,69 @@ public class ContactRequestDAO {
         return connected;
     }
 
+    /**
+     * Check if any request exists between two users in EITHER direction (pending or accepted)
+     * This implements Facebook-like one-way request system:
+     * - If A sends request to B, B cannot send request to A
+     * - B can only accept/reject A's request
+     * - If A cancels or request is rejected, then B can send request to A
+     */
+    public boolean anyRequestExistsBetweenUsers(int userId1, int userId2) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT 1 FROM " + DatabaseHelper.TABLE_CONTACT_REQUESTS +
+                " WHERE ((" + DatabaseHelper.COLUMN_REQUEST_SENDER_ID + " = ? AND " +
+                DatabaseHelper.COLUMN_REQUEST_RECEIVER_ID + " = ?) OR (" +
+                DatabaseHelper.COLUMN_REQUEST_SENDER_ID + " = ? AND " +
+                DatabaseHelper.COLUMN_REQUEST_RECEIVER_ID + " = ?)) AND " +
+                DatabaseHelper.COLUMN_REQUEST_STATUS + " IN ('pending', 'accepted') LIMIT 1",
+                new String[]{String.valueOf(userId1), String.valueOf(userId2),
+                        String.valueOf(userId2), String.valueOf(userId1)});
+
+        boolean exists = cursor != null && cursor.moveToFirst();
+        if (cursor != null) cursor.close();
+        return exists;
+    }
+
+    /**
+     * Get request status between two users
+     * Returns: "none", "sent" (you sent), "received" (you received), "accepted"
+     */
+    public String getRequestStatusBetweenUsers(int currentUserId, int otherUserId) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        // Check if current user sent request to other user
+        Cursor cursor = db.rawQuery("SELECT " + DatabaseHelper.COLUMN_REQUEST_STATUS +
+                " FROM " + DatabaseHelper.TABLE_CONTACT_REQUESTS +
+                " WHERE " + DatabaseHelper.COLUMN_REQUEST_SENDER_ID + " = ? AND " +
+                DatabaseHelper.COLUMN_REQUEST_RECEIVER_ID + " = ?",
+                new String[]{String.valueOf(currentUserId), String.valueOf(otherUserId)});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            String status = cursor.getString(0);
+            cursor.close();
+            if ("accepted".equals(status)) return "accepted";
+            if ("pending".equals(status)) return "sent";
+        }
+        if (cursor != null) cursor.close();
+
+        // Check if other user sent request to current user
+        cursor = db.rawQuery("SELECT " + DatabaseHelper.COLUMN_REQUEST_STATUS +
+                " FROM " + DatabaseHelper.TABLE_CONTACT_REQUESTS +
+                " WHERE " + DatabaseHelper.COLUMN_REQUEST_SENDER_ID + " = ? AND " +
+                DatabaseHelper.COLUMN_REQUEST_RECEIVER_ID + " = ?",
+                new String[]{String.valueOf(otherUserId), String.valueOf(currentUserId)});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            String status = cursor.getString(0);
+            cursor.close();
+            if ("accepted".equals(status)) return "accepted";
+            if ("pending".equals(status)) return "received";
+        }
+        if (cursor != null) cursor.close();
+
+        return "none";
+    }
+
     // Get Pending Request Count
     public int getPendingRequestCount(int userId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();

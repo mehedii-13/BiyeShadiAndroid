@@ -110,7 +110,7 @@ public class ShortlistActivity extends AppCompatActivity implements ShortlistAda
                         biodata != null ? biodata.getState() : "",
                         biodata != null ? biodata.getCountry() : "",
                         biodata != null ? biodata.getAboutMe() : "",
-                        "",
+                        user.getProfilePhotoUri() != null ? user.getProfilePhotoUri() : "",
                         user.getGender()
                     );
                     profiles.add(profile);

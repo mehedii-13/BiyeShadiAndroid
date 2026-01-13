@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrimony.R;
 import com.matrimony.model.MatchProfile;
+import com.matrimony.util.ImageUtils;
 
 import java.util.List;
 
@@ -50,6 +52,7 @@ public class MatchProfileAdapter extends RecyclerView.Adapter<MatchProfileAdapte
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView profileImage;
         TextView nameText;
         TextView ageGenderText;
         TextView locationText;
@@ -62,6 +65,7 @@ public class MatchProfileAdapter extends RecyclerView.Adapter<MatchProfileAdapte
 
         ViewHolder(View itemView) {
             super(itemView);
+            profileImage = itemView.findViewById(R.id.profileImage);
             nameText = itemView.findViewById(R.id.nameText);
             ageGenderText = itemView.findViewById(R.id.ageGenderText);
             locationText = itemView.findViewById(R.id.locationText);
@@ -76,6 +80,14 @@ public class MatchProfileAdapter extends RecyclerView.Adapter<MatchProfileAdapte
         void bind(MatchProfile profile) {
             nameText.setText(profile.getFullName());
             
+            // Load profile image
+            if (profile.getProfilePhotoUri() != null && !profile.getProfilePhotoUri().isEmpty()) {
+                ImageUtils.loadProfileImage(itemView.getContext(), profile.getProfilePhotoUri(),
+                    profileImage, null);
+            } else {
+                profileImage.setImageResource(R.drawable.ic_default_avatar);
+            }
+
             String ageGender = "";
             if (profile.getAge() > 0) {
                 ageGender = profile.getAge() + " years";

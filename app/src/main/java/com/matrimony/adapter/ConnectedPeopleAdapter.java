@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.matrimony.R;
 import com.matrimony.model.MatchProfile;
+import com.matrimony.util.ImageUtils;
 
 import java.util.List;
 
@@ -48,6 +50,8 @@ public class ConnectedPeopleAdapter extends RecyclerView.Adapter<ConnectedPeople
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView profileImage;
+        TextView profilePlaceholder;
         TextView nameText;
         TextView ageGenderText;
         TextView locationText;
@@ -56,6 +60,8 @@ public class ConnectedPeopleAdapter extends RecyclerView.Adapter<ConnectedPeople
 
         ViewHolder(View itemView) {
             super(itemView);
+            profileImage = itemView.findViewById(R.id.profileImage);
+            profilePlaceholder = itemView.findViewById(R.id.profilePlaceholder);
             nameText = itemView.findViewById(R.id.nameText);
             ageGenderText = itemView.findViewById(R.id.ageGenderText);
             locationText = itemView.findViewById(R.id.locationText);
@@ -66,6 +72,17 @@ public class ConnectedPeopleAdapter extends RecyclerView.Adapter<ConnectedPeople
         void bind(MatchProfile profile) {
             nameText.setText(profile.getFullName());
             
+            // Load profile image
+            if (profile.getProfilePhotoUri() != null && !profile.getProfilePhotoUri().isEmpty()) {
+                ImageUtils.loadProfileImage(itemView.getContext(), profile.getProfilePhotoUri(),
+                    profileImage, profilePlaceholder);
+            } else {
+                profileImage.setImageResource(R.drawable.ic_default_avatar);
+                if (profilePlaceholder != null) {
+                    profilePlaceholder.setVisibility(View.GONE);
+                }
+            }
+
             String ageGender = "";
             if (profile.getAge() > 0) {
                 ageGender = profile.getAge() + " years";

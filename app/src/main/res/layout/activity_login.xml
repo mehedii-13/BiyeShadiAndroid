@@ -67,11 +67,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/bg_input_field"
+                    android:background="@drawable/bg_input_selector"
                     android:hint="Enter your email"
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="16dp"
-                    android:textColor="#000000"
+                    android:textColor="@color/text_input"
+                    android:textColorHint="@color/text_hint"
                     android:textSize="16sp" />
 
                 <!-- Password Field -->
@@ -88,11 +89,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginBottom="24dp"
-                    android:background="@drawable/bg_input_field"
+                    android:background="@drawable/bg_input_selector"
                     android:hint="Enter your password"
                     android:inputType="textPassword"
                     android:paddingHorizontal="16dp"
                     android:textColor="#000000"
+                    android:textColorHint="#757575"
                     android:textSize="16sp" />
 
                 <!-- Progress Bar -->
@@ -110,9 +112,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginBottom="16dp"
-                    android:background="@drawable/bg_button_primary"
+                    android:background="@drawable/bg_button_selector"
                     android:text="Login"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/button_text"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

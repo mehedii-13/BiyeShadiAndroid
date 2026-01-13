@@ -173,17 +173,19 @@ public class ViewProfileActivity extends AppCompatActivity {
             
             int currentUserId = sessionManager.getUserId();
             boolean isShortlisted = shortlistDAO.isShortlisted(currentUserId, profileUserId);
-            boolean requestSent = contactRequestDAO.requestExists(currentUserId, profileUserId);
-            
+
+            // Get request status between users (one-way system)
+            String requestStatus = contactRequestDAO.getRequestStatusBetweenUsers(currentUserId, profileUserId);
+
             // Check if connected (request accepted by either party)
-            boolean isConnected = contactRequestDAO.areUsersConnected(currentUserId, profileUserId);
+            boolean isConnected = "accepted".equals(requestStatus);
 
             runOnUiThread(() -> {
                 showLoading(false);
                 
                 if (user != null) {
                     displayProfile(user, biodata, isConnected);
-                    updateButtons(isShortlisted, requestSent, isConnected);
+                    updateButtons(isShortlisted, requestStatus);
                 } else {
                     Toast.makeText(this, "Profile not found", Toast.LENGTH_SHORT).show();
                     finish();
@@ -254,19 +256,32 @@ public class ViewProfileActivity extends AppCompatActivity {
         return (value == null || value.isEmpty()) ? "Not specified" : value;
     }
 
-    private void updateButtons(boolean isShortlisted, boolean requestSent, boolean isConnected) {
+    private void updateButtons(boolean isShortlisted, String requestStatus) {
         shortlistButton.setText(isShortlisted ? "Remove from Shortlist" : "Add to Shortlist");
 
-        // If connected, show "Accepted" and disable button
-        if (isConnected) {
-            sendRequestButton.setText("Accepted");
-            sendRequestButton.setEnabled(false);
-        } else if (requestSent) {
-            sendRequestButton.setText("Request Sent");
-            sendRequestButton.setEnabled(false);
-        } else {
-            sendRequestButton.setText("Send Contact Request");
-            sendRequestButton.setEnabled(true);
+        // Handle different request states (one-way system like Facebook)
+        switch (requestStatus) {
+            case "accepted":
+                // Request accepted - show "Accepted" (disabled)
+                sendRequestButton.setText("Accepted");
+                sendRequestButton.setEnabled(false);
+                break;
+            case "sent":
+                // You sent a pending request - show "Request Sent" (disabled)
+                sendRequestButton.setText("Request Sent");
+                sendRequestButton.setEnabled(false);
+                break;
+            case "received":
+                // You received a pending request - show "Respond to Request" (disabled)
+                // User should go to Contact Requests to accept/reject
+                sendRequestButton.setText("Respond to Request");
+                sendRequestButton.setEnabled(false); // Can't send when you have pending received request
+                break;
+            default: // "none"
+                // No request exists - show "Send Contact Request" (enabled)
+                sendRequestButton.setText("Send Contact Request");
+                sendRequestButton.setEnabled(true);
+                break;
         }
     }
 
@@ -296,15 +311,22 @@ public class ViewProfileActivity extends AppCompatActivity {
         int userId = sessionManager.getUserId();
         
         executorService.execute(() -> {
-            boolean requestExists = contactRequestDAO.requestExists(userId, profileUserId);
-            
-            if (!requestExists) {
+            // Check if any request exists between users in either direction
+            boolean anyRequestExists = contactRequestDAO.anyRequestExistsBetweenUsers(userId, profileUserId);
+
+            if (!anyRequestExists) {
+                // No request exists - create new request
                 ContactRequest request = new ContactRequest(userId, profileUserId, "");
                 contactRequestDAO.insertRequest(request);
                 runOnUiThread(() -> {
                     sendRequestButton.setText("Request Sent");
                     sendRequestButton.setEnabled(false);
                     Toast.makeText(this, "Contact request sent!", Toast.LENGTH_SHORT).show();
+                });
+            } else {
+                // Request already exists (shouldn't happen if button logic is correct)
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "Request already exists between you and this user", Toast.LENGTH_SHORT).show();
                 });
             }
         });

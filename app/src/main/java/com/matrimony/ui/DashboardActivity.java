@@ -30,6 +30,7 @@ import com.matrimony.model.User;
 import com.matrimony.util.SessionManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -356,13 +357,14 @@ public class DashboardActivity extends AppCompatActivity {
                         user.getName(),
                         biodata.getAge(),
                         location,
-                        matchScore
+                        matchScore,
+                        user.getProfilePhotoUri()
                     ));
                 }
             }
 
             // Sort by match percentage
-            suggestions.sort((a, b) -> Integer.compare(b.getMatchPercentage(), a.getMatchPercentage()));
+            Collections.sort(suggestions, (a, b) -> Integer.compare(b.getMatchPercentage(), a.getMatchPercentage()));
 
             // Limit to top 10
             if (suggestions.size() > 10) {

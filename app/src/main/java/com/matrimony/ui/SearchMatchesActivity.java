@@ -125,8 +125,8 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
         for (int i = 18; i <= 70; i++) {
             ages.add(String.valueOf(i));
         }
-        ArrayAdapter<String> ageAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, ages);
-        ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> ageAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, ages);
+        ageAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         minAgeSpinner.setAdapter(ageAdapter);
         maxAgeSpinner.setAdapter(ageAdapter);
 
@@ -144,8 +144,8 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
     }
 
     private void setupSpinner(Spinner spinner, String[] items) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, items);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
 
@@ -257,7 +257,7 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
                     biodata.getState() != null ? biodata.getState() : "",
                     biodata.getCountry() != null ? biodata.getCountry() : "",
                     biodata.getAboutMe() != null ? biodata.getAboutMe() : "",
-                    "",
+                    user.getProfilePhotoUri() != null ? user.getProfilePhotoUri() : "",
                     user.getGender()
                 );
                 profiles.add(profile);
@@ -327,7 +327,7 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
                     biodata.getState() != null ? biodata.getState() : "",
                     biodata.getCountry() != null ? biodata.getCountry() : "",
                     biodata.getAboutMe() != null ? biodata.getAboutMe() : "",
-                    "",
+                    user.getProfilePhotoUri() != null ? user.getProfilePhotoUri() : "",
                     user.getGender()
                 );
                 profiles.add(profile);
@@ -409,10 +409,11 @@ public class SearchMatchesActivity extends AppCompatActivity implements MatchPro
         int userId = sessionManager.getUserId();
         
         executorService.execute(() -> {
-            boolean requestExists = contactRequestDAO.requestExists(userId, profile.getUserId());
-            
-            if (requestExists) {
-                runOnUiThread(() -> Toast.makeText(this, "Request already sent", Toast.LENGTH_SHORT).show());
+            // Check if any request exists between users in either direction (one-way system)
+            boolean anyRequestExists = contactRequestDAO.anyRequestExistsBetweenUsers(userId, profile.getUserId());
+
+            if (anyRequestExists) {
+                runOnUiThread(() -> Toast.makeText(this, "Request already exists between you and this user", Toast.LENGTH_SHORT).show());
             } else {
                 ContactRequest request = new ContactRequest(userId, profile.getUserId(), "");
                 contactRequestDAO.insertRequest(request);

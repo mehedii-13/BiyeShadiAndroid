@@ -71,8 +71,8 @@ public class CreateAccountActivity extends AppCompatActivity {
     private void setupSpinner() {
         String[] genders = {"Select Gender", "Male", "Female"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, 
-            android.R.layout.simple_spinner_item, genders);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            R.layout.spinner_item, genders);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         genderSpinner.setAdapter(adapter);
     }
 

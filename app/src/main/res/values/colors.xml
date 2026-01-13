@@ -18,12 +18,12 @@
     <color name="background_card">#FFFFFF</color>
 
     <!-- Text Colors - High contrast for readability -->
-    <color name="text_primary">#212121</color>
+    <color name="text_primary">#000000</color>
     <color name="text_secondary">#757575</color>
     <color name="text_tertiary">#9E9E9E</color>
     <color name="text_link">#D32F2F</color>
-    <color name="text_input">#212121</color>
-    <color name="text_hint">#BDBDBD</color>
+    <color name="text_input">#000000</color>
+    <color name="text_hint">#9E9E9E</color>
     <color name="text_on_primary">#FFFFFF</color>
     <color name="text_on_secondary">#FFFFFF</color>
 
@@ -55,11 +55,15 @@
     <color name="divider">#E0E0E0</color>
 
     <!-- Launcher Icon Colors -->
-    <color name="ic_launcher_background">#D32F2F</color>
+    <color name="ic_launcher_background">#F5EFE0</color>
 
     <!-- Additional UI Colors -->
     <color name="shadow">#1A000000</color>
     <color name="overlay">#80000000</color>
     <color name="ripple">#20D32F2F</color>
+
+    <!-- Missing color resources for item layouts -->
+    <color name="primary_color">#D32F2F</color>
+    <color name="secondary_color">#FFA000</color>
 </resources>
 
